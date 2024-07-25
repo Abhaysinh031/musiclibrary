@@ -23,7 +23,7 @@ This Django project is a music library application that allows users to manage t
 3. **Activate the Virtual Environment:**
 
 4. **Install Dependencies:**
-
+```bash
 pip install -r requirements.txt
 
 
