@@ -26,7 +26,7 @@ This Django project is a music library application that allows users to manage t
 ```bash
 pip install -r requirements.txt
 
-
+```
 5.**Apply Migrations:**
    python manage.py makemigration
    python manage.py migrate
