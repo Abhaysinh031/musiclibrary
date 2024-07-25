@@ -1,0 +1,110 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>{% block title %}Music Library{% endblock %}</title>
+    <style>
+        
+        nav{
+            color: rgba(255, 255, 255, 0.922);
+            background-color:#5E6472; 
+             
+            
+        }
+        #music-library{
+            color:rgba(255, 255, 255, 0.922) ;
+        }
+
+        body a{
+            color: rgba(255, 255, 255, 0.922);
+        }
+        #logout{
+            margin-top: 7px;
+            color: rgba(255, 255, 255, 0.888);
+        }
+        #logout:hover{
+            color: white;
+        }
+        #profile{
+            margin-right: 4px;
+            color: rgba(255, 255, 255, 0.888);
+        }
+        #profile:hover{
+            color: white;
+        }
+        #login{
+            color: rgba(255, 255, 255, 0.888);
+        }
+        #login:hover{
+            color: white;
+        }
+        #register{
+            color: rgba(255, 255, 255, 0.888);
+        }
+        #register:hover{
+            color: white;
+        }
+        @media(min-width:100px)and (max-width:800px){
+            nav{
+                width: 100%;
+                
+            }
+            .navbar-toggler-icon{
+                background-image: url('data:image/svg+xml;charset=utf8,%3Csvg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath stroke="rgba%280, 0, 0, 0.5%29" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" d="M4 7h22M4 15h22M4 23h22"/%3E%3C/svg%3E');
+                border: none;
+            }
+            
+        }
+        @media(min-width:800px) and (max-width:1000px){
+            .navbar-toggler-icon{
+                background-image: url('data:image/svg+xml;charset=utf8,%3Csvg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath stroke="rgba%280, 0, 0, 0.5%29" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" d="M4 7h22M4 15h22M4 23h22"/%3E%3C/svg%3E');
+                border: none;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg ">
+        <a id="music-library" class="navbar-brand" href="{% url 'home' %}">Music Library</a>
+        <button id="navbar-menu" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span id="menu" class="navbar-toggler-icon" ></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'favorites' %}">Favorites</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="profile" href="{% url 'profile' %}">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <form method="POST" action="{% url 'logout' %}" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit" id="logout"class="btn btn-link nav-link" style="padding: 0; margin-right:  10px;">Logout</button>
+                        </form>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a id="login" class="nav-link" href="{% url 'login' %}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="register" class="nav-link" href="{% url 'register' %}">Register</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    <div class="container mt-4">
+        {% block content %}{% endblock %}
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

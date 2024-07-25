@@ -1,0 +1,27 @@
+{% extends 'library/base.html' %}
+
+{% block title %}Create Folder{% endblock %}
+
+{% block content %}
+<style>
+    .container{
+        min-width: 100%;
+    }
+    h1{
+        text-align: center;
+    }
+    @media(min-width:100px)and (max-width:800px) {
+        .container{
+            width: 100%;
+        }        
+    }
+</style>
+<div class="container" style="min-width: 100%;">
+    <h1>Create Folder</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Create Folder</button>
+    </form>
+</div>
+{% endblock %}

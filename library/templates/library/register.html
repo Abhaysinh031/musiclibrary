@@ -1,0 +1,59 @@
+{% extends 'library/base.html' %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<style>
+    .container{
+        min-width: 100%;     
+    }
+    h1{
+        text-align: center;
+    }
+    .form{
+        /* background-color: rgb(139, 174, 174); */
+        display: flex;
+        justify-content: space-evenly;
+        border-radius: 10px;
+        margin-top: 10px;
+    }
+    form{
+        margin-top: 10px;
+        color: black;
+        
+    }
+    
+    button{
+        position: relative;
+        left: 45%;
+        margin-bottom: 8px;
+    }
+    @media(min-width:100px)and (max-width:900px){
+        .container{
+            width: 100%;
+        }
+        .form{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        button{
+            position: relative;
+            left: 30%;
+        }
+    }
+</style>
+
+<div class="container">
+    <h1>Register</h1>
+    <div class="form">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+    </div>
+</div>
+{% endblock %}

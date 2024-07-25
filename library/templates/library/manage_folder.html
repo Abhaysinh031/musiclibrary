@@ -1,0 +1,60 @@
+{% extends "library/base.html" %}
+
+{% block title %}Manage Folder{% endblock %}
+
+{% block content %}
+<style>
+    .container{
+        background-color: rgb(139, 174, 174);
+        width: 100%;
+        text-align: center;
+    }
+    button{
+        
+        margin-bottom: 5px;
+    }
+    #file{
+        margin-left: 10%;
+    }
+
+    @media(min-width:100px)and(max-width:800px){
+        .container{
+            width: 100%;
+            
+        }
+        h2{
+            color: white;
+        }
+    }
+</style>
+<div class="container"><h2>{% if folder %}Edit Folder: {{ folder.name }}{% else %}Create Folder{% endif %}</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <!-- Folder Form Fields -->
+    {{ folder_form.as_p }}
+
+    <!-- Music Form Fields -->
+    <h3>Upload Music</h3>
+    {{ music_form.non_field_errors }}
+    <div class="form-group">
+        {{ music_form.title.label_tag }}
+        {{ music_form.title }}
+    </div>
+    <div class="form-group">
+        {{ music_form.artist.label_tag }}
+        {{ music_form.artist }}
+    </div>
+    <div class="form-group">
+        {{ music_form.genre.label_tag }}
+        {{ music_form.genre }}
+    </div>
+    <div class="form-group" id="file">
+        {{ music_form.file.label_tag }}
+        {{ music_form.file }}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+</div>
+{% endblock %}

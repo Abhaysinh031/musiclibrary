@@ -1,0 +1,52 @@
+<!-- favorites.html -->
+{% extends "library/base.html" %}
+
+{% block title %}Favorites{% endblock %}
+
+{% block content %}
+
+
+<style>
+    li{
+        display: flex;
+        justify-content: space-evenly;
+    }
+    audio{
+        
+        position: relative;
+        width: 40%;
+        padding-top: 6px;
+        padding-bottom: 22px;
+    }
+    @media(min-width:100px) and (max-width:900px){
+        li{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            margin-top: 10%;
+        }
+        audio{
+            width: 100%;
+        }
+    }
+</style>
+<h2>Your Favorite Music</h2>
+<ul>
+    {% for track in music_list %}
+        <li>
+            {{ track.title }} by {{ track.artist }} ({{ track.genre }})
+            <audio controls>
+                <source src="{{ track.file.url }}" type="audio/mpeg">
+            </audio>
+            <form method="post" style="display: inline;">
+                {% csrf_token %}
+                <input type="hidden" name="music_id" value="{{ track.id }}">
+                <button type="submit" class="btn btn-danger">Remove Music</button>
+            </form>
+        </li>
+    {% empty %}
+        <li>No favorite music.</li>
+    {% endfor %}
+</ul>
+{% endblock %}
+

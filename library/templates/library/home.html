@@ -1,0 +1,68 @@
+<!-- home.html -->
+{% extends "library/base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<style>
+    .container{
+        min-width: 60%;
+        background-color: rgb(139, 174, 174);
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+    }
+    ul .media-body{
+        
+        display: flex;
+        justify-content: space-between;
+        margin-top: 5px;
+    }
+    ul h5{
+        margin-right: 10px;
+    }
+    ul p{
+        margin-right: 10px;
+    }
+    ul audio{
+        margin-left: 10px;
+    }
+    @media(min-width:100px)and (max-width:800px){
+        .container{
+            display: flex;
+            flex-direction: column;
+        }
+        ul .media-body{
+            display: flex;
+            flex-direction: column;
+        }
+    }
+</style>
+<div class="container">
+    {% if user.is_authenticated %}
+    {% else %}
+    <h1>Music Library</h1>
+    <p>Login to upload your own music tracks.</p>
+    {% endif %}
+
+    <h2>Music Tracks</h2>
+    <ul class="list-unstyled">
+        {% for track in music_list %}
+        <li class="media mb-3">
+            <div class="media-body">
+                <h5 class="mt-0 mb-1">{{ track.title }}</h5>
+                <p>{{ track.artist }} - {{ track.genre }}</p>
+                <audio controls>
+                    <source src="{{ track.file.url }}" type="audio/mpeg">
+                </audio>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
+
+
