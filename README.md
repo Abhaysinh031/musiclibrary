@@ -28,18 +28,22 @@ pip install -r requirements.txt
 
 ```
 5.**Apply Migrations:**
+  ```bash
    python manage.py makemigration
    python manage.py migrate
-
+```
 6.**Create a Superuser:**
+```bash
    python manage.py createsuperuser
-
+```
 7.**Run the Development Server:**
+```bash
    python manage.py runserver
-
+```
 8.**Access the Website:**
+```bash
    Open your browser and go to http://127.0.0.1:8000/.
-
+```
 
 #### c. Usage Instructions
 
