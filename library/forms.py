@@ -23,11 +23,7 @@ class MusicForm(forms.ModelForm):
         }
     
         
-    # def __init__(self, *args, **kwargs):
-    #     user = kwargs.pop('user', None)
-    #     super().__init__(*args, **kwargs)
-    #     if user:
-    #         self.fields['folder'].queryset = Folder.objects.filter(user=user)
+
 
     def clean_file(self):
         file = self.cleaned_data.get('file', False)
