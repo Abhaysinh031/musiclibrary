@@ -5,9 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from .models import Music, Folder, Favorite
 from .forms import FolderForm, MusicForm
 
-# def home(request):
-#     folders = Folder.objects.all() 
-#     return render(request, 'library/home.html', {'folders': folders})
+
 
 def home(request):
     if request.user.is_authenticated:
@@ -54,11 +52,7 @@ def user_logout(request):
     logout(request)
     return redirect('home')
 
-# @login_required
-# def profile(request):
-#     folders = Folder.objects.filter(user=request.user)
-#     user_music = Music.objects.filter(folders__user=request.user).distinct()
-#     return render(request, 'library/profile.html', {'folders': folders, 'music': user_music})
+
 @login_required
 def profile(request):
     user = request.user
@@ -141,15 +135,7 @@ def delete_music(request, music_id):
         return redirect('home')
     return render(request, 'library/confirm_delete.html', {'object': music, 'type': 'music'})
 
-# @login_required
-# def favorites(request):
-#     favorite, created = Favorite.objects.get_or_create(user=request.user)
-#     if request.method == 'POST':
-#         music_id = request.POST.get('music_id')
-#         music = Music.objects.get(id=music_id)
-#         favorite.music.add(music)
-#         return redirect('favorites')
-#     return render(request, 'library/favorites.html', {'favorite': favorite})
+
 @login_required
 def favorites(request):
     user = request.user
