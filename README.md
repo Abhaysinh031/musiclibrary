@@ -23,7 +23,9 @@ This Django project is a music library application that allows users to manage t
 3. **Activate the Virtual Environment:**
 
 4. **Install Dependencies:**
-      pip install -r requirements.txt
+
+pip install -r requirements.txt
+
 
 5.**Apply Migrations:**
    python manage.py makemigration
